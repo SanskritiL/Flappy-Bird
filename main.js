@@ -62,7 +62,7 @@ function draw() {
         bX <= pipe[i].x + pipeNorth.width &&
         (bY <= pipe[i].y + pipeNorth.height ||
           bY + bird.height >= pipe[i].y + constant)) ||
-      bY + bird.height >= canvas.height - fg.height
+      (bY + bird.height >= canvas.height - fg.height)
     ) {
       //reload
       location.reload();
