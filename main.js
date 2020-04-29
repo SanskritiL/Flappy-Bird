@@ -14,6 +14,9 @@ pipeNorth.src = "images/pipeNorth.png";
 pipeSouth.src = "images/pipeSouth.png";
 bird.src = "images/bird.png";
 
+
+var gap = 100;
+var constant ;
 var gravity = 1;
 var bY = 150;
 var bX = 10;
@@ -45,6 +48,7 @@ function draw() {
   ctx.drawImage(bg, 0, 0);
 
   for (var i = 0; i < pipe.length; i++) {
+    constant = pipeNorth.height + gap;
     ctx.drawImage(pipeNorth, pipe[i].x, pipe[i].y);
     ctx.drawImage(pipeSouth, pipe[i].x, pipe[i].y + constant);
     pipe[i].x--;
@@ -57,15 +61,8 @@ function draw() {
     }
 
     //game over
-    if (
-      (bX + bird.width >= pipe[i].x &&
-        bX <= pipe[i].x + pipeNorth.width &&
-        (bY <= pipe[i].y + pipeNorth.height ||
-          bY + bird.height >= pipe[i].y + constant)) ||
-      (bY + bird.height >= canvas.height - fg.height)
-    ) {
-      //reload
-      location.reload();
+    if( bX + bird.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY+bird.height >= pipe[i].y+constant) || bY + bird.height >=  canvas.height - fg.height){
+        location.reload(); // reload the page
     }
 
     if (pipe[i].x == 5) {
